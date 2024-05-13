@@ -1,0 +1,27 @@
+.container-page-content {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 86vh;
+    
+}
+.container-page-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    width: 98.98vw;
+    height: 9.8vh;
+    background-color: black;
+    color: goldenrod;
+}
+
+#aside {
+    width: 15%;
+}
+
+#router {
+    width: 85%;
+}

@@ -19,5 +19,8 @@ import { RouterModule } from '@angular/router';
     CommonModule,
     RouterModule
   ],
+  exports: [
+    PagesComponent
+  ]
 })
 export class FotoeModule { }
