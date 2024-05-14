@@ -1,3 +1,7 @@
 <div class="container-mainpage">
-    <p>mainpage works</p>
-</div>
+    <img id="images" *ngFor="let foto of fotos" [src]="foto" alt="Image description" (click)="selectImage(foto)">
+  </div>
+  
+  <div class="modal" [class.show]="selectedImage" (click)="closeImage()">
+    <img *ngIf="selectedImage" [src]="selectedImage" alt="Selected image">
+  </div>
