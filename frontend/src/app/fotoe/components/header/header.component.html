@@ -1,3 +1,15 @@
 <div class="container-header">
-    <p>header works!</p>
+    <div class="title">
+        <h1 (click)="selectCategory(null)">Fotografías</h1>
+    </div>
+    <div class="categories">
+      <div class="category" *ngFor="let category of categories" (click)="selectCategory(category.name)">
+        {{ category.name }}
+        <div class="submenu">
+          <div class="subcategory" *ngFor="let subcategory of category.subcategories">
+            {{ subcategory }}
+          </div>
+        </div>
+      </div>
+    </div>
 </div>
