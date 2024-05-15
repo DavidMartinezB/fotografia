@@ -5,6 +5,8 @@ import { AsideComponent } from './components/aside/aside.component';
 import { MainpageComponent } from './components/mainpage/mainpage.component';
 import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
+import { PostPhotoComponent } from './components/post-photo/post-photo.component';
+import { PostSubcategoryComponent } from './components/post-subcategory/post-subcategory.component';
 
 
 
@@ -13,7 +15,9 @@ import { RouterModule } from '@angular/router';
     PagesComponent,
     AsideComponent,
     MainpageComponent,
-    HeaderComponent
+    HeaderComponent,
+    PostPhotoComponent,
+    PostSubcategoryComponent
   ],
   imports: [
     CommonModule,
