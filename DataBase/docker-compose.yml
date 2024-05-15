@@ -1,0 +1,13 @@
+version: '3.1'
+
+services:
+  db1:
+    build: .
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: 12345
+    volumes:
+      - ./data:/var/lib/mysql
+    ports:
+      - 3306:3306
