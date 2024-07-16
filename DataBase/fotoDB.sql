@@ -25,6 +25,7 @@ CREATE TABLE Especie (
     PRIMARY KEY (id),
     FOREIGN KEY (familia_id) REFERENCES Familia(id)
 );
+
 CREATE TABLE Fotos (
     id INT AUTO_INCREMENT,
     nombre VARCHAR(255),
