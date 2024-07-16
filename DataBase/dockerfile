@@ -1,0 +1,12 @@
+# Usa la imagen oficial de MySQL como imagen base
+FROM mysql:latest
+
+# Establece las variables de entorno para la base de datos
+ENV MYSQL_DATABASE=fotoDB
+ENV MYSQL_ROOT_PASSWORD=aa11aa11
+
+# Copia el script de la base de datos al contenedor
+COPY ./fotoDB.sql /docker-entrypoint-initdb.d/
+
+# Expone el puerto 3306
+EXPOSE 3306
