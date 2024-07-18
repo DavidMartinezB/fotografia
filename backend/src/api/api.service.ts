@@ -101,4 +101,13 @@ export class ApiService {
     async getFotosSegunIdFamilia(idFamilia: number) {
         return this.fotosRepository.find({where: {familiaId: idFamilia}});
     }
+
+    async getFotosSegunNombre(nombre: string) {
+        return this.fotosRepository.findOne({where: {nombre}});
+    }
+
+    async getFotoPorUrl(url: string) { 
+        return this.fotosRepository.findOne({where: {url}});
+    }
+
 }

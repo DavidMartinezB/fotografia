@@ -108,6 +108,17 @@ export class ApiController {
   getFotosSegunIdFamilia(@Param('idFamilia') idFamilia: string) {
     return this.apiService.getFotosSegunIdFamilia(+idFamilia);
   }
+
+  @Get('/fotos/nombre/:nombre')
+  getFotosSegunNombre(@Param('nombre') nombre: string) {
+    const nombreConEspacios = nombre.replace(/-/g, ' ');
+    return this.apiService.getFotosSegunNombre(nombreConEspacios);
+  }
+
+  @Get('/fotos/url/:url')
+  getFotoPorUrl(@Param('url') url: string) {
+    return this.apiService.getFotoPorUrl(url);
+  }
   
 
 }
