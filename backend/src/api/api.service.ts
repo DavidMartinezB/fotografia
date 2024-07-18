@@ -46,6 +46,10 @@ export class ApiService {
         return this.animalRepository.findOne({where: {id}});
     }
 
+    async getAnimalPorNombreComun(nombre: string) {
+        return this.animalRepository.findOne({where: {nombre}});
+    }
+
     async getFamilias() {
         return this.familiaRepository.find();
     }

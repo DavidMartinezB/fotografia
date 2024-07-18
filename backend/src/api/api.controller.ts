@@ -36,6 +36,12 @@ export class ApiController {
     return this.apiService.getAnimalPorId(+id);
   }
 
+  @Get('/animales/nombreComun/:nombreComun')
+  getAnimalPorNombreComun(@Param('nombreComun') nombreComun: string) {
+    const nombreComunConEspacios = nombreComun.replace(/-/g, ' ');
+    return this.apiService.getAnimalPorNombreComun(nombreComunConEspacios);
+  }
+
   @Get('/familias')
   getFamilias() {
     return this.apiService.getFamilias();
