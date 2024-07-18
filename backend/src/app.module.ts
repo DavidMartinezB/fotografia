@@ -13,9 +13,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       username: 'root',
       password: 'aa11aa11',
       database: 'fotoDB',
-      entities: [],
+      entities: [
+        __dirname + '/**/*.entity{.ts,.js}',
+      ],
       synchronize: false,
     }),
+    ApiModule,
   ],
   controllers: [AppController],
   providers: [AppService],

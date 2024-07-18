@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToOne, ManyToMany } from "typeorm";
 
 
-@Entity()
+@Entity({name: 'Animal'})
 export class Animal {
     @PrimaryGeneratedColumn()
     id: number;
@@ -9,11 +9,11 @@ export class Animal {
     @Column()
     nombre: string;
     
-    @OneToMany(() => Familia, familia => familia.animal)
-    familias: Familia[];
+    @OneToMany(() => Familia, Familia => Familia.Animal)
+    Familias: Familia[];
 }
 
-@Entity()
+@Entity({name: 'Familia'})
 export class Familia {
   @PrimaryGeneratedColumn()
   id: number;
@@ -22,16 +22,16 @@ export class Familia {
   nombre: string;
 
   @Column()
-  animal_id: number;
+  animalId: number;
 
-  @ManyToOne(() => Animal, animal => animal.familias)
-  animal: Animal;
+  @ManyToOne(() => Animal, Animal => Animal.Familias)
+  Animal: Animal;
 
-  @OneToMany(() => Especie, especie => especie.familia)
-  especies: Especie[];
+  @OneToMany(() => Especie, Especie => Especie.Familia)
+  Especies: Especie[];
 }
 
-@Entity()
+@Entity({name: 'Especie'})
 export class Especie {
   @PrimaryGeneratedColumn()
   id: number;
@@ -40,16 +40,16 @@ export class Especie {
   nombre: string;
 
   @Column()
-  nombre_cientifico: string;
+  nombreCientifico: string;
 
   @Column()
-  familia_id: number;
+  familiaId: number;
 
-  @ManyToOne(() => Familia, familia => familia.especies)
-  familia: Familia;
+  @ManyToOne(() => Familia, Familia => Familia.Especies)
+  Familia: Familia;
 }
 
-@Entity()
+@Entity({name: 'Fotos'})
 export class Fotos {
   @PrimaryGeneratedColumn()
   id: number;
@@ -58,13 +58,13 @@ export class Fotos {
   nombre: string;
 
   @Column()
-  animal_id: number;
+  animalId: number;
 
   @Column()
-  familia_id: number;
+  familiaId: number;
 
   @Column()
-  especie_id: number;
+  especieId: number;
 
   @Column()
   fecha: Date;
@@ -73,11 +73,11 @@ export class Fotos {
   url: string;
 
   @ManyToOne(() => Animal)
-  animal: Animal;
+  Animal: Animal;
 
   @ManyToOne(() => Familia)
-  familia: Familia;
+  Familia: Familia;
 
   @ManyToOne(() => Especie)
-  especie: Especie;
+  Especie: Especie;
 }

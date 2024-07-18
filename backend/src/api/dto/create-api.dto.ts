@@ -1,24 +1,47 @@
+import { Transform } from 'class-transformer';
+import { IsNotEmpty, IsNumber, IsDate, IsString, IsOptional } from 'class-validator';
 
 export class CreateAnimalDto {
+    @IsNotEmpty()
     nombre: string;
 }
 
 export class CreateFamiliaDto {
+    @IsNotEmpty()
     nombre: string;
-    animal_id: number;
+
+    @IsNumber()
+    animalId: number;
 }
 
 export class CreateEspecieDto {
+    @IsNotEmpty()
     nombre: string;
-    nombre_cientifico: string;
-    familia_id: number;
+
+    @IsNotEmpty()
+    nombreCientifico: string;
+
+    @IsNumber()
+    familiaId: number;
 }
 
 export class CreateFotoDto {
+    @IsNotEmpty()
     nombre: string;
-    animal_id: number;
-    familia_id: number;
-    especie_id: number;
+
+    @IsNumber()
+    animalId: number;
+
+    @IsNumber()
+    familiaId: number;
+
+    @IsNumber()
+    especieId: number;
+
+    @IsDate()
+    @Transform(({ value }) => new Date(value), { toClassOnly: true })
     fecha: Date;
+
+    @IsString()
     url: string;
 }
