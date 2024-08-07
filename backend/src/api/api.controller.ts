@@ -1,6 +1,8 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseInterceptors, UploadedFile } from '@nestjs/common';
 import { ApiService } from './api.service';
 import { CreateAnimalDto, CreateEspecieDto, CreateFamiliaDto, CreateFotoDto } from './dto/create-api.dto';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
 
 @Controller('api')
 export class ApiController {
@@ -22,7 +24,9 @@ export class ApiController {
   }
 
   @Post('/crearFoto')
-  createFoto(@Body() createFotoDto: CreateFotoDto) {
+  @UseInterceptors(FileInterceptor('imagen'))
+  createFoto(@Body() createFotoDto: CreateFotoDto, @UploadedFile() file: Express.Multer.File) {
+    createFotoDto.imagen = file.buffer;
     return this.apiService.createFoto(createFotoDto);
   }
 
@@ -189,15 +193,6 @@ export class ApiController {
     const foto = this.apiService.getFotosSegunNombre(nombreConEspacios);
     if (!foto) {
       throw new NotFoundException('No se encontraron fotos');
-    }
-    return foto;
-  }
-
-  @Get('/fotos/url/:url')
-  getFotoPorUrl(@Param('url') url: string) {
-    const foto = this.apiService.getFotoPorUrl(url);
-    if (!foto) {
-      throw new NotFoundException('No se encontró la foto');
     }
     return foto;
   }

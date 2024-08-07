@@ -32,7 +32,7 @@ CREATE TABLE Fotos (
     familiaId INT,
     especieId INT,
     fecha DATE,
-    url VARCHAR(255),
+    imagen LONGBLOB,
     PRIMARY KEY (id),
     FOREIGN KEY (animalId) REFERENCES Animal(id),
     FOREIGN KEY (familiaId) REFERENCES Familia(id),

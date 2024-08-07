@@ -70,7 +70,7 @@ export class Fotos {
   fecha: Date;
 
   @Column()
-  url: string;
+  imagen: Buffer;
 
   @ManyToOne(() => Animal)
   Animal: Animal;

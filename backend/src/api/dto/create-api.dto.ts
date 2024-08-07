@@ -42,6 +42,6 @@ export class CreateFotoDto {
     @Transform(({ value }) => new Date(value), { toClassOnly: true })
     fecha: Date;
 
-    @IsUrl()
-    url: string;
+    @IsNotEmpty() 
+    imagen: Buffer;
 }

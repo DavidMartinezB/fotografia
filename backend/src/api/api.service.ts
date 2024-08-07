@@ -110,10 +110,6 @@ export class ApiService {
         return this.fotosRepository.findOne({where: {nombre}});
     }
 
-    async getFotoPorUrl(url: string) { 
-        return this.fotosRepository.findOne({where: {url}});
-    }
-
 
     async buscarPorNombreComunNombreCientificoNombredeFoto(query: string) {
         const animal = await this.especieRepository.find({where: {nombre: query}});
