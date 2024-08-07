@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsNotEmpty, IsNumber, IsDate, IsString, IsOptional } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsDate, IsString, IsOptional, IsUrl } from 'class-validator';
 
 export class CreateAnimalDto {
     @IsNotEmpty()
@@ -42,6 +42,6 @@ export class CreateFotoDto {
     @Transform(({ value }) => new Date(value), { toClassOnly: true })
     fecha: Date;
 
-    @IsString()
+    @IsUrl()
     url: string;
 }

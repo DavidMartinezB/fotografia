@@ -7,6 +7,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { RouterModule } from '@angular/router';
 import { PostPhotoComponent } from './components/post-photo/post-photo.component';
 import { PostSubcategoryComponent } from './components/post-subcategory/post-subcategory.component';
+import { FamiliasComponentComponent } from './components/familias-component/familias-component.component';
+import { EspeciesComponent } from './components/especies/especies.component';
+import { FotosComponent } from './components/fotos/fotos.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -17,11 +21,16 @@ import { PostSubcategoryComponent } from './components/post-subcategory/post-sub
     MainpageComponent,
     HeaderComponent,
     PostPhotoComponent,
-    PostSubcategoryComponent
+    PostSubcategoryComponent,
+    FamiliasComponentComponent,
+    EspeciesComponent,
+    FotosComponent
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    FormsModule,
+    
   ],
   exports: [
     PagesComponent

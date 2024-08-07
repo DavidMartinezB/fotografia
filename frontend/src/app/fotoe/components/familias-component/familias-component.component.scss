@@ -1,0 +1,14 @@
+/* En frontend/src/app/fotoe/components/familias-component/familias-component.component.scss */
+.familias {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .familia {
+    padding: 20px;
+    padding-left: 10px;
+    margin-left: 20px;
+    font-size: 30px;  
+    cursor: pointer;
+
+  } 

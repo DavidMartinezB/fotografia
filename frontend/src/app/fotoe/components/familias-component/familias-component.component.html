@@ -1,0 +1,5 @@
+<div class="familias">
+    <div *ngFor="let familia of familias" class="familia" (click)="onSelectFamilia(familia.id)">
+        {{ familia.nombre }}
+    </div>
+</div>

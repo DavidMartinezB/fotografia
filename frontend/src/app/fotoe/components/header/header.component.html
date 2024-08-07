@@ -1,15 +1,25 @@
 <div class="container-header">
     <div class="title">
-        <h1 (click)="selectCategory(null)">Fotografías</h1>
+        <h1>Fotografías</h1>
     </div>
-    <div class="categories">
-      <div class="category" *ngFor="let category of categories" (click)="selectCategory(category.name)">
-        {{ category.name }}
-        <div class="submenu">
-          <div class="subcategory" *ngFor="let subcategory of category.subcategories">
-            {{ subcategory }}
-          </div>
+
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" (keyup)="buscar()" placeholder="Buscar...">
+        <div  *ngIf="resultadosBusqueda && (resultadosBusqueda.animal.length > 0 || resultadosBusqueda.especie.length > 0 || resultadosBusqueda.foto.length > 0)" class="resultados-busqueda">
+            <div *ngIf="resultadosBusqueda.animal.length > 0">
+                <h3>Nombre Común</h3>
+                <ul>
+                <li *ngFor="let animal of resultadosBusqueda.animal" (click)="onSelectedFamilia(animal.id)">{{ animal.nombre }}</li>
+                </ul>
+            </div>
+            <div *ngIf="resultadosBusqueda.especie.length > 0">
+                <h3>Nombre Cientifico</h3>
+                <ul>
+                <li *ngFor="let especie of resultadosBusqueda.especie">{{ especie.nombreCientifico }}</li>
+                </ul>
+            </div>
         </div>
-      </div>
+
+        
     </div>
 </div>

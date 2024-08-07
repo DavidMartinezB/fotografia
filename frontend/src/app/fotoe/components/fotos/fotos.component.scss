@@ -1,0 +1,22 @@
+.contenedor {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+    background-color: whitesmoke;
+}
+
+.foto-container {
+    display: flex;
+    flex-direction: row; /* Alinea los elementos de izquierda a derecha */
+    flex-wrap: wrap;
+    justify-content: space-around; /* Asegura un espacio entre las fotos */
+}
+  
+.foto-container img {
+    width: 300px; /* Ajusta este valor según el tamaño deseado */
+    height: auto; /* Mantiene la proporción de las imágenes */
+    object-fit: cover; /* Asegura que la imagen cubra el espacio asignado sin perder proporción */
+
+}

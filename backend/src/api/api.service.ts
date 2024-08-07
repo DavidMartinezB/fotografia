@@ -114,4 +114,11 @@ export class ApiService {
         return this.fotosRepository.findOne({where: {url}});
     }
 
+
+    async buscarPorNombreComunNombreCientificoNombredeFoto(query: string) {
+        const animal = await this.especieRepository.find({where: {nombre: query}});
+        const especie = await this.especieRepository.find({where: {nombreCientifico: query}});
+        const foto = await this.fotosRepository.find({where: {nombre: query}});
+        return {animal, especie, foto};
+    }
 }

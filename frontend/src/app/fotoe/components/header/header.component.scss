@@ -57,3 +57,26 @@
   .category:hover .submenu {
     display: block;
   }
+  .search-container {
+    position: relative;
+    width: 100%;
+  }
+  
+.resultados-busqueda {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  border-radius: 2px;
+  padding: 5px;
+  min-width: 160px;
+  z-index: 1;
+  color: black;
+  top: 150%; /* Posiciona justo debajo del input */
+  left: 0;
+}
+
+.search-container input:focus + .resultados-busqueda,
+.search-container input:active + .resultados-busqueda,
+.resultados-busqueda:hover {
+  display: block;
+}

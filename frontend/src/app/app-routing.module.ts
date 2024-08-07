@@ -4,6 +4,9 @@ import { PagesComponent } from './fotoe/pages/pages.component';
 import { MainpageComponent } from './fotoe/components/mainpage/mainpage.component';
 import { PostPhotoComponent } from './fotoe/components/post-photo/post-photo.component';
 import { PostSubcategoryComponent } from './fotoe/components/post-subcategory/post-subcategory.component';
+import { FamiliasComponentComponent } from './fotoe/components/familias-component/familias-component.component';
+import { EspeciesComponent } from './fotoe/components/especies/especies.component';
+import { FotosComponent } from './fotoe/components/fotos/fotos.component';
 
 const routes: Routes = [
   {
@@ -13,6 +16,18 @@ const routes: Routes = [
       {
         path: '',
         component: MainpageComponent
+      },
+      {
+        path: 'familias/:animalId',
+        component: FamiliasComponentComponent
+      },
+      {
+        path: 'especies/:familiaId',
+        component: EspeciesComponent
+      },
+      {
+        path: 'fotos/:especieId',
+        component: FotosComponent
       },
       {
         path: 'subir-img',
