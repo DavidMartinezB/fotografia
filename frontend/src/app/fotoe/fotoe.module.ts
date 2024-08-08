@@ -11,6 +11,8 @@ import { FamiliasComponentComponent } from './components/familias-component/fami
 import { EspeciesComponent } from './components/especies/especies.component';
 import { FotosComponent } from './components/fotos/fotos.component';
 import { FormsModule } from '@angular/forms';
+import { CreateFormsComponent } from './components/create-forms/create-forms.component';
+import { FotoDetalleComponent } from './components/foto-detalle/foto-detalle.component';
 
 
 
@@ -24,7 +26,9 @@ import { FormsModule } from '@angular/forms';
     PostSubcategoryComponent,
     FamiliasComponentComponent,
     EspeciesComponent,
-    FotosComponent
+    FotosComponent,
+    CreateFormsComponent,
+    FotoDetalleComponent
   ],
   imports: [
     CommonModule,

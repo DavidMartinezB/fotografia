@@ -7,6 +7,8 @@ import { PostSubcategoryComponent } from './fotoe/components/post-subcategory/po
 import { FamiliasComponentComponent } from './fotoe/components/familias-component/familias-component.component';
 import { EspeciesComponent } from './fotoe/components/especies/especies.component';
 import { FotosComponent } from './fotoe/components/fotos/fotos.component';
+import { CreateFormsComponent } from './fotoe/components/create-forms/create-forms.component';
+import { FotoDetalleComponent } from './fotoe/components/foto-detalle/foto-detalle.component';
 
 const routes: Routes = [
   {
@@ -38,9 +40,17 @@ const routes: Routes = [
         component: PostSubcategoryComponent
       },
       {
+        path: 'crear-elementos',
+        component: CreateFormsComponent
+      },
+      {
+        path:'foto-detalle/:id',
+        component: FotoDetalleComponent
+      },
+      {
         path: '**',
         redirectTo: ''
-      }
+      },
     ]
   }
 ];

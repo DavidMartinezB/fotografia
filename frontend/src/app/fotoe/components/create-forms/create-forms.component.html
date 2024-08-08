@@ -1,0 +1,61 @@
+<div class="form-selector">
+    <button (click)="selectForm('animal')">Crear Animal</button>
+    <button (click)="selectForm('familia')">Crear Familia</button>
+    <button (click)="selectForm('especie')">Crear Especie</button>
+    <button (click)="selectForm('foto')">Crear Foto</button>
+</div>
+<div class="form-card" *ngIf="selectedForm">
+    <div *ngIf="selectedForm === 'animal'">
+        <h2>Formulario para crear Animal</h2>
+        <form (ngSubmit)="onSubmitAnimal()">
+            <input type="text" placeholder="Nombre" [(ngModel)]="animal.nombre" name="nombre" required>
+            <button type="submit">Crear Animal</button>
+        </form>
+    </div>
+    <div *ngIf="selectedForm === 'familia'">
+        <h2>Formulario para crear Familia</h2>
+        <form (ngSubmit)="onSubmitFamilia()">
+            <input type="text" placeholder="Nombre" [(ngModel)]="familia.nombre" name="nombre" required>
+            <select [(ngModel)]="familia.animalId" name="animalId" required>
+              <option *ngFor="let animal of animales" [value]="animal.id">{{ animal.nombre }}</option>
+            </select>
+            <button type="submit">Crear Familia</button>
+          </form>
+    </div>
+    <div *ngIf="selectedForm === 'especie'">
+        <h2>Formulario para crear Especie</h2>
+        <form (ngSubmit)="onSubmitEspecie()">
+            <input type="text" placeholder="Nombre" [(ngModel)]="especie.nombre" name="nombre" required>
+            <input type="text" placeholder="Nombre Científico" [(ngModel)]="especie.nombreCientifico" name="nombreCientifico" required>
+            <select [(ngModel)]="especie.familiaId" name="familiaId" required>
+                <option *ngFor="let familia of familias" [value]="familia.id">{{ familia.nombre }}</option>
+            </select>
+            <button type="submit">Crear Especie</button>
+        </form>
+    </div>
+    <div *ngIf="selectedForm === 'foto'">
+        <h2>Formulario para crear Foto</h2>
+        <form (ngSubmit)="onSubmitFoto()" enctype="multipart/form-data">
+            <select [(ngModel)]="foto.animalId" name="animalId" required>
+                <option *ngFor="let animal of animales" [value]="animal.id">{{ animal.nombre }}</option>
+            </select>
+            <select [(ngModel)]="foto.familiaId" name="familiaId" required>
+                <option *ngFor="let familia of familias" [value]="familia.id">{{ familia.nombre }}</option>
+            </select>
+            <select [(ngModel)]="foto.especieId" name="especieId" required>
+                <option *ngFor="let especie of especies" [value]="especie.id">{{ especie.nombre }}</option>
+            </select>
+            <input type="date" placeholder="Fecha" [(ngModel)]="foto.fecha" name="fecha" required>
+            
+            <div class="drop-area" (click)="fileInput.click()" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
+                <p>Arrastra y suelta el archivo aquí o haz clic para seleccionar</p>
+                <input type="file" #fileInput (change)="onFileChange($event)" accept="image/*" style="display: none;">
+                <ul>
+                    <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
+                </ul>
+            </div>
+            
+            <button type="submit">Crear Foto</button>
+        </form>
+    </div>
+</div>

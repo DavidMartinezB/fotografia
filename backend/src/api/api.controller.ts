@@ -1,7 +1,7 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseInterceptors, UploadedFile } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, NotFoundException, UseInterceptors, UploadedFile, UploadedFiles, Query } from '@nestjs/common';
 import { ApiService } from './api.service';
 import { CreateAnimalDto, CreateEspecieDto, CreateFamiliaDto, CreateFotoDto } from './dto/create-api.dto';
-import { FileInterceptor } from '@nestjs/platform-express';
+import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Express } from 'express';
 
 @Controller('api')
@@ -23,11 +23,15 @@ export class ApiController {
     return this.apiService.createEspecie(createEspecieDto);
   }
 
-  @Post('/crearFoto')
-  @UseInterceptors(FileInterceptor('imagen'))
-  createFoto(@Body() createFotoDto: CreateFotoDto, @UploadedFile() file: Express.Multer.File) {
-    createFotoDto.imagen = file.buffer;
-    return this.apiService.createFoto(createFotoDto);
+  @Post('/crearFotos')
+  async createFoto(@Body() createFotoDto: CreateFotoDto) {
+    console.log(createFotoDto, "createFotoDto");
+    try {
+      const foto = await this.apiService.createFoto(createFotoDto);
+      return foto;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   @Get('/animales')
@@ -161,13 +165,18 @@ export class ApiController {
   }
 
   @Get('/fotos/especieId/:idEspecie')
-  getFotosSegunIdEspecie(@Param('idEspecie') idEspecie: string) {
-    const foto = this.apiService.getFotosSegunIdEspecie(+idEspecie);
-    if (!foto) {
+  async getFotosSegunIdEspecie(
+    @Param('idEspecie') idEspecie: string,
+    @Query('page') page: number = 1,
+    @Query('pageSize') pageSize: number = 10
+  ) {
+    const fotos = await this.apiService.getFotosSegunIdEspecie(+idEspecie, page, pageSize);
+    if (!fotos || fotos.length === 0) {
       throw new NotFoundException('No se encontraron fotos');
     }
-    return foto;
+    return fotos;
   }
+
 
   @Get('/fotos/animalId/:idAnimal')
   getFotosSegunIdAnimal(@Param('idAnimal') idAnimal: string) {

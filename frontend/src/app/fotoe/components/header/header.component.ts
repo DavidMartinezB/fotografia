@@ -32,11 +32,22 @@ export class HeaderComponent {
     console.log('Resultados:', this.resultadosBusqueda);
   }
 
-
   onSelectedEspecie(especieId: number) {
     this.router.navigate(['/fotos', especieId]);
   }
+
   onSelectedFamilia(familiaId: number) {
     this.router.navigate(['/especies', familiaId]);
+  }
+
+  onSelectedFoto(fotoId: number) {
+    this.router.navigate(['/foto-detalle', fotoId]);
+  }
+
+  navigateToCreate() {
+    this.router.navigate(['/crear-elementos']);
+  }
+  navigateToMainPage() {
+    this.router.navigate(['/']);
   }
 }
