@@ -1,0 +1,31 @@
+.foto-tarjeta {
+    display: flex;
+    flex-direction: row; /* Mantén la dirección en fila */
+    align-items: center; /* Centra verticalmente los elementos */
+    justify-content: center; /* Centra horizontalmente los elementos */
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    margin: 20px auto; /* Centra el contenedor horizontalmente */
+  }
+  
+  .foto-imagen {
+    border-radius: 10px;
+  }
+  
+  .foto-detalles {
+    margin-left: 20px; /* Añade espacio entre la imagen y los detalles */
+    text-align: left;
+    width: 50%; /* Ajusta el ancho de los detalles */
+  }
+
+  .contenedor {
+    width: 100vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }

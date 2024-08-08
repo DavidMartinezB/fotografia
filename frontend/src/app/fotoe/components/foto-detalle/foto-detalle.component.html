@@ -1,0 +1,13 @@
+<div class="contenedor">
+    <div class="foto-tarjeta">
+        <img class="foto-imagen" [src]="convertBufferToUrl(foto.imagen)" alt="Foto">
+        <div class="foto-detalles">
+          <h2>{{ foto.titulo }}</h2>
+          <p>{{ foto.descripcion }}</p>
+          <p>Fecha: {{ fecha }}</p>
+          <p>Animal: {{ animalNombre }}</p>
+          <p>Especie: {{ especieNombre }}</p>
+          <p>Familia: {{ familiaNombre }}</p>
+        </div>
+      </div>
+</div>

@@ -1,0 +1,5 @@
+<div class="animales-container">
+    <div *ngFor="let animal of animales" class="animal-rectangulo" (click)="onSelectAnimal(animal.id)">
+      {{ animal.nombre }}
+    </div>
+  </div>

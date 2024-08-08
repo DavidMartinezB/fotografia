@@ -1,0 +1,19 @@
+.container-page-content {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 88.4vh;
+    
+}
+.container-page-header {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 10px;
+    width: 98.98%;
+    height: 8.8vh;
+    background-color: black;
+    color: goldenrod;
+}
