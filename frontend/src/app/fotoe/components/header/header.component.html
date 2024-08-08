@@ -1,0 +1,31 @@
+<div class="container-header">
+    <div class="title" (click)="navigateToMainPage()">
+        <h1>Fotografías</h1>
+    </div>
+    <div class="search-container">
+        <input type="text" [(ngModel)]="searchQuery" (keyup)="buscar()" placeholder="Buscar...">
+        <div *ngIf="resultadosBusqueda && (resultadosBusqueda.animal.length > 0 || resultadosBusqueda.especie.length > 0 || resultadosBusqueda.foto.length > 0)" class="resultados-busqueda">
+            <div *ngIf="resultadosBusqueda.animal.length > 0">
+                <h3>Nombre Común</h3>
+                <ul>
+                    <li *ngFor="let animal of resultadosBusqueda.animal" (click)="onSelectedFamilia(animal.id)">{{ animal.nombre }}</li>
+                </ul>
+            </div>
+            <div *ngIf="resultadosBusqueda.especie.length > 0">
+                <h3>Nombre Cientifico</h3>
+                <ul>
+                    <li *ngFor="let especie of resultadosBusqueda.especie">{{ especie.nombreCientifico }}</li>
+                </ul>
+            </div>
+            <div *ngIf="resultadosBusqueda.foto.length > 0">
+                <h3>Fotos</h3>
+                <ul>
+                    <li *ngFor="let foto of resultadosBusqueda.foto" (click)="onSelectedFoto(foto.id)">{{ foto.nombre }}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="create-button-container">
+        <button (click)="navigateToCreate()">Crear Elementos</button>
+    </div>
+</div>

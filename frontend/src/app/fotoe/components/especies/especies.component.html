@@ -1,0 +1,5 @@
+<div class="familias">
+    <div *ngFor="let especie of especies" class="familia" (click)="onSelectedEspecie(especie.id)">
+        {{ especie.nombre }}
+    </div>
+</div>

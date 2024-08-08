@@ -1,0 +1,5 @@
+FROM mysql:8.4.1
+ENV MYSQL_DATABASE=fotoDB
+ENV MYSQL_ROOT_PASSWORD=aa11aa11
+COPY ./fotoDB.sql /docker-entrypoint-initdb.d/
+EXPOSE 3306
