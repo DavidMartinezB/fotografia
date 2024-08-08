@@ -1,0 +1,38 @@
+services:
+  db:
+    image: fotocontainer
+    container_name: fotocontainer
+    environment:
+      MYSQL_ROOT_PASSWORD: Aa11aa11@#
+      MYSQL_DATABASE: fotoDB
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  backend:
+    build: ./backend
+    container_name: backend
+    environment:
+      DB_HOST: db
+      DB_USER: root
+      DB_PASSWORD: Aa11aa11@#
+      DB_NAME: fotoDB
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+volumes:
+  db_data:
