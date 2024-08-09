@@ -127,17 +127,31 @@ export class CreateFormsComponent implements OnInit {
 
   addToQueue(file: File) {
     const reader = new FileReader();
-    reader.onload = () => {
-      const fotoData = {
-        imagen: reader.result,
-        nombre: file.name.split('.').slice(0, -1).join('.'),
-        animalId: Number(this.foto.animalId),
-        familiaId: Number(this.foto.familiaId),
-        especieId: Number(this.foto.especieId),
-        fecha: this.foto.fecha
+    reader.onload = (event: any) => {
+      const img = new Image();
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+          canvas.width = img.width;
+          canvas.height = img.height;
+          ctx.drawImage(img, 0, 0);
+          const jpegDataUrl = canvas.toDataURL('image/jpeg');
+          const base64String = jpegDataUrl.split(',')[1]; // Obtener la cadena base64 sin el prefijo
+  
+          const fotoData = {
+            imagen: base64String,
+            nombre: file.name.split('.').slice(0, -1).join('.'),
+            animalId: Number(this.foto.animalId),
+            familiaId: Number(this.foto.familiaId),
+            especieId: Number(this.foto.especieId),
+            fecha: this.foto.fecha
+          };
+          this.fotoQueue.push(fotoData);
+          this.processQueue();
+        }
       };
-      this.fotoQueue.push(fotoData);
-      this.processQueue();
+      img.src = event.target.result;
     };
     reader.readAsDataURL(file);
   }
