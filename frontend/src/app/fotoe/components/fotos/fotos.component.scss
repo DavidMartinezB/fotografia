@@ -1,27 +1,50 @@
 .contenedor {
     display: flex;
-    flex-direction: column; /* Cambia a columna para que la paginación esté al final */
-    justify-content: space-between; /* Asegura que el contenido y la paginación estén separados */
-    min-height: 100vh; /* Asegura que el contenedor ocupe toda la altura de la página */
-    width: 100vw; /* Asegura que el contenedor ocupe todo el ancho de la pantalla */
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    width: 100vw;
     background-color: whitesmoke;
-    padding: 0; /* Elimina cualquier padding */
-    margin: 0; /* Elimina cualquier margen */
+    padding: 0;
+    margin: 0;
 }
 
 .foto-container {
     display: flex;
-    flex-direction: row; /* Alinea los elementos de izquierda a derecha */
+    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-around; /* Asegura un espacio entre las fotos */
-    gap: 20px; /* Añade espacio entre las fotos */
-    width: 100%; /* Asegura que el contenedor de fotos ocupe todo el ancho */
+    justify-content: space-around;
+    gap: 20px;
+    width: 100%;
+    padding: 20px;
 }
 
-.foto-container img {
-    width: 300px; /* Ajusta este valor según el tamaño deseado */
-    height: auto; /* Mantiene la proporción de las imágenes */
-    object-fit: cover; /* Asegura que la imagen cubra el espacio asignado sin perder proporción */
+.foto-item {
+    text-align: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.foto-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.foto-item img {
+    width: 300px;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.foto-item img:hover {
+    transform: scale(1.05);
+}
+
+.foto-item p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #333;
 }
 
 .pagination-controls {
@@ -30,13 +53,13 @@
     align-items: center;
     margin-top: 20px;
     padding: 10px;
-    background-color: #f9f9f9; /* Fondo claro para destacar la paginación */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Añade una sombra para darle profundidad */
-    border-radius: 5px; /* Bordes redondeados */
-    position: sticky; /* Mantiene la paginación al final de la página */
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    position: sticky;
     bottom: 0;
-    width: 100%; /* Asegura que ocupe el ancho completo */
-    left: 0; /* Alinea al borde izquierdo */
+    width: 100%;
+    left: 0;
 }
 
 .pagination-controls button {

@@ -1,6 +1,9 @@
 <div class="contenedor">
   <div class="foto-container">
-    <img *ngFor="let foto of fotos" [src]="foto.imagenUrl" alt="Foto de especie">
+    <div *ngFor="let foto of fotos" class="foto-item">
+      <img [src]="foto.imagenUrl" alt="Foto de especie">
+      <p>{{ foto.nombre }}</p>
+    </div>
   </div>
 </div>
 <div class="pagination-controls">
