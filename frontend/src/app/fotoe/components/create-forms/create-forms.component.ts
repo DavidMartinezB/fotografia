@@ -92,8 +92,6 @@ export class CreateFormsComponent implements OnInit {
       return;
     }
   
-    console.log('Foto data:', fotoData);
-  
     this.apiConnectionService.createFoto(fotoData).subscribe(response => {
       console.log('Foto created:', response);
     }, error => {
@@ -101,57 +99,21 @@ export class CreateFormsComponent implements OnInit {
     });
   }
 
-  
-  onFileChange(event: any) {
-    const files = event.target.files;
-    if (files && files.length > 0) {
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        this.selectedFiles.push(file);
-        this.addToQueue(file);
-      }
-    }
-  }
-
-  onDrop(event: DragEvent) {
-    event.preventDefault();
-    const files = event.dataTransfer?.files;
-    if (files && files.length > 0) {
-      for (let i = 0; i < files.length; i++) {
-        const file = files[i];
-        this.selectedFiles.push(file);
-        this.addToQueue(file);
-      }
-    }
-  }
-
   addToQueue(file: File) {
     const reader = new FileReader();
     reader.onload = (event: any) => {
-      const img = new Image();
-      img.onload = () => {
-        const canvas = document.createElement('canvas');
-        const ctx = canvas.getContext('2d');
-        if (ctx) {
-          canvas.width = img.width;
-          canvas.height = img.height;
-          ctx.drawImage(img, 0, 0);
-          const jpegDataUrl = canvas.toDataURL('image/jpeg');
-          const base64String = jpegDataUrl.split(',')[1]; // Obtener la cadena base64 sin el prefijo
+      const base64String = event.target.result.split(',')[1]; // Obtener la cadena base64 sin el prefijo
   
-          const fotoData = {
-            imagen: base64String,
-            nombre: file.name.split('.').slice(0, -1).join('.'),
-            animalId: Number(this.foto.animalId),
-            familiaId: Number(this.foto.familiaId),
-            especieId: Number(this.foto.especieId),
-            fecha: this.foto.fecha
-          };
-          this.fotoQueue.push(fotoData);
-          this.processQueue();
-        }
+      const nuevaFotoData = {
+        imagen: base64String,
+        nombre: file.name.split('.').slice(0, -1).join('.'), // Nombre del archivo sin la extensión
+        animalId: Number(this.foto.animalId),
+        familiaId: Number(this.foto.familiaId),
+        especieId: Number(this.foto.especieId),
+        fecha: this.foto.fecha
       };
-      img.src = event.target.result;
+      this.fotoQueue.push(nuevaFotoData);
+      this.processQueue();
     };
     reader.readAsDataURL(file);
   }
@@ -165,15 +127,35 @@ export class CreateFormsComponent implements OnInit {
     const fotoData = this.fotoQueue.shift();
 
     this.apiConnectionService.createFoto(fotoData).subscribe(response => {
-      console.log('Foto created:', response);
       this.isProcessingQueue = false;
       this.processQueue(); // Process the next item in the queue
     }, error => {
-      console.error('Error creating foto:', error);
       this.isProcessingQueue = false;
       this.processQueue(); // Process the next item in the queue even if there's an error
     });
   }
+  
+  onFileChange(event: any) {
+    const files = event.target.files;
+    if (files.length > 0) {
+      this.selectedFiles = Array.from(files);
+      this.selectedFiles.forEach(file => {
+        this.addToQueue(file);
+      });
+    }
+  }
+  onDrop(event: DragEvent) {
+    event.preventDefault();
+    const files = event.dataTransfer?.files;
+    if (files && files.length > 0) {
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        this.selectedFiles.push(file);
+        this.addToQueue(file);
+      }
+    }
+  }
+
   onDragOver(event: DragEvent) {
     event.preventDefault();
   }
