@@ -11,7 +11,4 @@
   <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
   <span>Página {{currentPage}}</span>
   <button (click)="nextPage()">Siguiente</button>
-</div>
-<div class="delete-controls">
-  <button (click)="deleteSelectedFotos()">Eliminar Seleccionadas</button>
-</div>
+  <button class="delete-controls" (click)="deleteSelectedFotos()">Eliminar Seleccionadas</button>
