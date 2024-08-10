@@ -34,6 +34,12 @@ export class ApiController {
     }
   }
 
+  @Delete('fotos/:id')
+  async deleteFotoPorId(@Param('id') id: string) {
+    await this.apiService.deleteFotoPorId(+id);
+    return { message: 'Foto eliminada exitosamente' };
+  }
+
   @Get('/animales')
   getAnimales() {
     const animal = this.apiService.getAnimales();

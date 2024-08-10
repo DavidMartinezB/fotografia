@@ -50,6 +50,17 @@ export class FotosComponent implements OnInit {
     }
   }
 
+  deleteSelectedFotos(): void {
+    const selectedFotos = this.fotos.filter(foto => foto.selected);
+    const deleteRequests = selectedFotos.map(foto => this.apiConnectionService.deleteFoto(foto.id));
+    
+    Promise.all(deleteRequests).then(() => {
+      this.fotos = this.fotos.filter(foto => !foto.selected);
+    }).catch(error => {
+      console.error('Error eliminando fotos:', error);
+    });
+  }
+
   convertBufferToUrl(buffer: { type: string, data: number[] }): string {
     console.log('Buffer:', buffer);
   

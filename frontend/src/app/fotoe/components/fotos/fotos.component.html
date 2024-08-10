@@ -1,6 +1,7 @@
 <div class="contenedor">
   <div class="foto-container">
     <div *ngFor="let foto of fotos" class="foto-item">
+      <input type="checkbox" [(ngModel)]="foto.selected">
       <img [src]="foto.imagenUrl" alt="Foto de especie">
       <p>{{ foto.nombre }}</p>
     </div>
@@ -10,4 +11,7 @@
   <button (click)="previousPage()" [disabled]="currentPage === 1">Anterior</button>
   <span>Página {{currentPage}}</span>
   <button (click)="nextPage()">Siguiente</button>
+</div>
+<div class="delete-controls">
+  <button (click)="deleteSelectedFotos()">Eliminar Seleccionadas</button>
 </div>

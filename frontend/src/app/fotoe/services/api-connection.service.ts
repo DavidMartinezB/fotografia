@@ -13,6 +13,10 @@ export class ApiConnectionService {
 
   ) { }
 
+  deleteFoto(id: number): Promise<void> {
+    console.log('Eliminando foto con id:', id);
+    return this.http.delete<void>(`${this.url}/fotos/${id}`).toPromise();
+  }
   createAnimal(animal: any) {
     return this.http.post(`${this.url}/crearAnimal`, animal);
   }
