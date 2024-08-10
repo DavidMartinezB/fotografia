@@ -49,7 +49,7 @@
             
             <div class="drop-area" (click)="fileInput.click()" (drop)="onDrop($event)" (dragover)="onDragOver($event)">
                 <p>Arrastra y suelta el archivo aquí o haz clic para seleccionar</p>
-                <input type="file" #fileInput (change)="onFileChange($event)" accept="image/*" style="display: none;">
+                <input type="file" #fileInput (change)="onFileChange($event)" accept=".cr1, .cr2, .cr3, image/*" style="display: none;">
                 <ul>
                     <li *ngFor="let file of selectedFiles">{{ file.name }}</li>
                 </ul>
