@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateAnimalDto, CreateEspecieDto, CreateFamiliaDto, CreateFotoDto } from './dto/create-api.dto';
 import { Repository } from 'typeorm';
 import { Animal, Especie, Familia, Fotos } from './entities/api.entity';
@@ -65,6 +65,13 @@ export class ApiService {
 
     async getAnimales() {
         return this.animalRepository.find();
+    }
+
+    async deleteFotoPorId(id: number): Promise<void> {
+        const result = await this.fotosRepository.delete({ id });
+        if (result.affected === 0) {
+            throw new NotFoundException('No se encontró la foto para eliminar');
+        }
     }
 
     async getAnimalPorId(id: number) {
